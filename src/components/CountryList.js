@@ -1,17 +1,29 @@
 import React, { Component } from 'react';
 import CountryItem from './CountryItem';
+import Search from './Search';
 
 export default class CountryList extends Component {
-	renderItems() {
-		return this.props.country.map(item => <CountryItem key={item.id} item={item} />);
-	}
+    state = {
+        search: ''
+    }
+
+    handleChange = e => {
+        this.setState({ search : e.target.value});
+    }
+	
 	render() {
+
+        const {search} = this.state;
+        const filteredCountries = this.props.country.filter( country => {
+            return country.name.toLowerCase().indexOf( search.toLowerCase()) !== -1
+        })
+
 		return (
 			<React.Fragment>
-				<div className="my-3 p-3 bg-white rounded shadow-sm">
-					<h6 className="border-bottom border-gray pb-2 mb-0">Countries</h6>
+                <Search change={this.handleChange}/>
+				<div className="my-3 p-3 bg-white">
 
-					<ul className="list-unstyled">{this.renderItems()}</ul>
+					<ul className="list-unstyled row">{filteredCountries.map(item => <CountryItem key={item.id} item={item} />)}</ul>
 				</div>
 			</React.Fragment>
 		);

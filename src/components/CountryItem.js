@@ -1,27 +1,27 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
+
+const divStyle = {
+    width: '15rem'
+}
 
 const imgStyle = {
-    height: '100%',
-    width: '50px'
+    width: '5rem'
 }
 
 const CountryItem = ({ item }) => (
 	<React.Fragment>
-			<li>
-				<div className="media text-muted pt-3">
-                    <div >
-                        <img style={imgStyle} src={item.flag} alt={item.flag} />
-                    </div>
-                    
-					<div className="media-body pb-3 mb-0 small lh-125 border-bottom border-gray">
-						<div className="d-flex justify-content-between align-items-center w-100">
-							<strong className="text-gray-dark">{item.name}</strong>
-							<span>{item.capital}</span>
-						</div>
-						
-					</div>
-				</div>
+        <Link to={`/details/${item.id}`}>
+			<li className="mr-3 ml-3 mt-5">
+                <div className="card" style={divStyle}>
+                <img src={item.flag} className="card-img-top" alt={item.flag} style={imgStyle} />
+                <div className="card-body">
+                    <h5  className="card-title">{item.name}</h5>
+                    <p className="card-text">{item.capital}</p>
+                </div>
+                </div>
 			</li>
+           </Link>
 	</React.Fragment>
 );
 export default CountryItem;

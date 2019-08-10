@@ -1,9 +1,11 @@
 import React, { Component } from 'react';
+import { BrowserRouter, Route, Switch } from 'react-router-dom';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import Header from './components/Header';
-import Search from './components/Search';
 import CountryList from './components/CountryList';
+import CountryDetails from './components/CountryDetails';
 // import axios from 'axios';
+
 
 export default class App extends Component {
   constructor(props){
@@ -33,11 +35,16 @@ export default class App extends Component {
   render() {
     return (
       <React.Fragment>
+        <BrowserRouter>
         <Header name="AnySearch" />
         <div className="container">
-        <Search />
-        <CountryList country={this.state.country} />
+        <Switch>
+          <Route exact path='/' render={props => <CountryList country={this.state.country} />}/>
+          <Route path='/details/:id' component={CountryDetails}/>
+        </Switch>
         </div>
+        </BrowserRouter>
+        
     </React.Fragment>
     )
   }
