@@ -1,26 +1,44 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { Component } from 'react';
+import 'bootstrap/dist/css/bootstrap.min.css';
+import Header from './components/Header';
+import Search from './components/Search';
+import CountryList from './components/CountryList';
+// import axios from 'axios';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+export default class App extends Component {
+  constructor(props){
+    super(props);
+
+    this.state = {
+      country: []
+    };
+  }
+
+  componentDidMount(){
+    const url = 'https://restcountries.eu/rest/v2/all';
+
+    fetch(url)
+			.then(response => {
+				return response.json();
+			})
+			.then(data => {
+				this.setState({
+					country: data
+				});
+			})
+      .catch(error => console.log(error));
+      
+  }
+
+  render() {
+    return (
+      <React.Fragment>
+        <Header name="AnySearch" />
+        <div className="container">
+        <Search />
+        <CountryList country={this.state.country} />
+        </div>
+    </React.Fragment>
+    )
+  }
 }
-
-export default App;
