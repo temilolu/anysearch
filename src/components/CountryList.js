@@ -23,7 +23,7 @@ export default class CountryList extends Component {
                 <Search change={this.handleChange}/>
 				<div className="my-3 p-3 bg-white">
 
-					<ul className="list-unstyled row">{filteredCountries.map(item => <CountryItem key={item.id} item={item} />)}</ul>
+					<ul className="list-unstyled row">{filteredCountries.map((item, i) => <CountryItem key={i} item={item} />)}</ul>
 				</div>
 			</React.Fragment>
 		);

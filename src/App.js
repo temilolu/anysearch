@@ -33,14 +33,16 @@ export default class App extends Component {
   }
 
   render() {
+    const {country} = this.state;
+
     return (
       <React.Fragment>
         <BrowserRouter>
         <Header name="AnySearch" />
         <div className="container">
         <Switch>
-          <Route exact path='/' render={props => <CountryList country={this.state.country} />}/>
-          <Route path='/details/:id' component={CountryDetails}/>
+          <Route exact path='/' render={props => <CountryList country={country} />}/>
+          <Route path='/details/:detailId' render={({match}) => <CountryDetails {...country.find(item => item.numericCode === match.params.detailId)} />} />
         </Switch>
         </div>
         </BrowserRouter>
