@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 
+const API_KEY = process.env.REACT_APP_FIXER_API_KEY;
+
 export default class CurrencyCoverter extends Component {
 
     constructor(props) {
@@ -24,11 +26,13 @@ export default class CurrencyCoverter extends Component {
     }
   };
 
+  
+
   convertHandler = () => {
     if (this.state.fromCurrency !== this.state.toCurrency) {
       axios
         .get(
-          `http://data.fixer.io/api/latest?access_key=0c39153c808f671475fd6b52d5a22a8a&base=${
+          `http://data.fixer.io/api/latest?access_key=${API_KEY}&base=${
             this.state.fromCurrency
           }&symbols=${this.state.toCurrency}`
         )
@@ -47,7 +51,7 @@ export default class CurrencyCoverter extends Component {
 
   componentDidMount() {
     axios
-      .get("http://data.fixer.io/api/latest?access_key=0c39153c808f671475fd6b52d5a22a8a")
+      .get(`http://data.fixer.io/api/latest?access_key=${API_KEY}`)
       .then(response => {
         const currencyAr = ["EUR"];
         for (const key in response.data.rates) {
@@ -61,6 +65,8 @@ export default class CurrencyCoverter extends Component {
   }
 
     render() {
+        
+
         return (
             <React.Fragment>
             <div>
