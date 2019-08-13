@@ -7,7 +7,8 @@ const divStyle = {
 }
 
 const imgStyle = {
-    width: '5rem'
+    height: '3rem',
+    width: 'auto'
 
 }
 
@@ -15,13 +16,13 @@ const CountryItem = ({item}) => (
 
 	<React.Fragment>
             
-			<li className="mr-3 ml-3 mt-5">
-                  <Link to={`details/${item.numericCode}`}>
+			<li className="mr-3 ml-3 mt-5 ">
+                  <Link to={`details/${item.numericCode}`} className="text-decoration-none text-muted">
                 <div className="card" style={divStyle}>
                 <img src={item.flag} className="pt-4 mx-auto card-img-top" alt={item.flag} style={imgStyle} />
                 <div className="card-body">
-                    <h5  className="card-title">{item.name}</h5>
-                    <p className="card-text">{item.capital}</p>
+                    <h6 className="card-title">{item.name}</h6>
+                    
                 </div>
                 </div>
                  </Link>

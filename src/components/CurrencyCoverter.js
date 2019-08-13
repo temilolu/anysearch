@@ -26,8 +26,6 @@ export default class CurrencyCoverter extends Component {
     }
   };
 
-  
-
   convertHandler = () => {
     if (this.state.fromCurrency !== this.state.toCurrency) {
       axios
@@ -69,21 +67,29 @@ export default class CurrencyCoverter extends Component {
 
         return (
             <React.Fragment>
+
             <div>
                
-                <div className="From">
-          <input
+                <div className="">
+                  
+      <div class="input-group mb-2">
+        <div class="input-group-prepend">
+          <div class="input-group-text">{this.state.fromCurrency}</div>
+        </div>
+         <input
             name="amount"
             type="text"
+            className="form-control"
             value={this.state.amount}
             onChange={event => this.setState({ amount: event.target.value })}
           />
-         
-           <p>{this.state.fromCurrency}</p>
-         
-           <p>{this.state.toCurrency}</p>
-          <button onClick={this.convertHandler}>Convert</button>
-          {this.state.result && <h3><span>{this.props.symbol} </span>{this.state.result}</h3>}
+      </div>
+
+     <p className="font-weight-bold pt-3 pb-2">to {this.state.toCurrency}  </p>
+    <div className="mb-3">{this.state.result && <h3><span>{this.props.symbol} </span>{this.state.result}</h3>}</div>
+    
+          <button className="btn btn-info mb-2" onClick={this.convertHandler}>Convert</button>
+          
         </div>
             </div>
         </React.Fragment>

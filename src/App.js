@@ -17,7 +17,7 @@ export default class App extends Component {
   }
 
   componentDidMount(){
-    const url = 'https://restcountries.eu/rest/v2/all';
+    const url = 'https://restcountries.eu/rest/v2/all'; 
 
     fetch(url)
 			.then(response => {
