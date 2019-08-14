@@ -39,7 +39,7 @@ const CountryDetails = ({name, capital, population, flag, currencies}) => {
 
                 <div className="col-md-4">
                       <div className="my-3 p-3 bg-white rounded shadow-sm">
-                            <p className="font-weight-bold pt-3 pb-2">Convert EUR</p>
+                            <p className="font-weight-bold pt-3 pb-2">Convert SEK</p>
                            <CurrencyCoverter code={currencies[0].code} symbol={currencies[0].symbol} />
                           </div> 
                 </div>
