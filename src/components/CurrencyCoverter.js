@@ -9,7 +9,7 @@ export default class CurrencyCoverter extends Component {
     super(props);
     this.state = {
       result: null,
-      fromCurrency: "USD",
+      fromCurrency: "EUR",
       toCurrency: props.code,
       amount: 1,
       currencies: []
@@ -30,7 +30,7 @@ export default class CurrencyCoverter extends Component {
     if (this.state.fromCurrency !== this.state.toCurrency) {
       axios
         .get(
-          `https://openexchangerates.org/api/latest.json?app_id=${API_KEY}&base=${
+          `http://data.fixer.io/api/latest?access_key=${API_KEY}&base=${
             this.state.fromCurrency
           }&symbols=${this.state.toCurrency}`
         )
@@ -49,9 +49,9 @@ export default class CurrencyCoverter extends Component {
 
   componentDidMount() {
     axios
-      .get(`https://openexchangerates.org/api/latest.json?app_id=${API_KEY}`)
+      .get(`http://data.fixer.io/api/latest?access_key=${API_KEY}`)
       .then(response => {
-        const currencyAr = ["USD"];
+        const currencyAr = ["EUR"];
         for (const key in response.data.rates) {
           currencyAr.push(key);
         }
@@ -72,9 +72,9 @@ export default class CurrencyCoverter extends Component {
                
                 <div className="">
                   
-      <div class="input-group mb-2">
-        <div class="input-group-prepend">
-          <div class="input-group-text">{this.state.fromCurrency}</div>
+      <div className="input-group mb-2">
+        <div className="input-group-prepend">
+          <div className="input-group-text">{this.state.fromCurrency}</div>
         </div>
          <input
             name="amount"
